@@ -1,0 +1,35 @@
+<?php
+
+require_once "application/Log.php";
+require_once "application/CrawlerInterface.php";
+require_once "application/CrawlerAbstract.php";
+require_once "application/CrawlerCollection.php";
+
+require_once "application/Stockphotos/StockphotoCrawlerInterface.php";
+require_once "application/Stockphotos/StockphotoCrawlerAbstract.php";
+require_once "application/Stockphotos/LittleVisualsCrawler.php";
+
+// Set log mode
+Log::$disabled = ['DEBUG'];
+
+$collection = new CrawlerCollection();
+$collection->setBaseFolder('contents');
+
+// Add crawlers
+$collection->add(new Stockphotos\LittleVisualsCrawler);
+
+/*
+ * file type stuff
+http://unsplash.com/
+http://join.deathtothestockphoto.com/
+http://nos.twnsnd.co/
+http://superfamous.com/
+http://picjumbo.com/
+http://thepatternlibrary.com/
+http://www.gratisography.com/
+http://getrefe.tumblr.com/
+http://imcreator.com/free
+*/
+
+// Run crawlers
+$collection->run();
