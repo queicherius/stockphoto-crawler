@@ -37,10 +37,13 @@ abstract class StockphotoCrawlerAbstract extends CrawlerAbstract
     private function filterExistingFiles($images, $folder, $file_type)
     {
 
-        return array_filter($images, function ($image) use ($folder, $file_type){
-            $path = $this->getFullPath($image, $folder, $file_type);
-            return !is_file($path);
-        });
+        return array_filter(
+            $images,
+            function ($image) use ($folder, $file_type) {
+                $path = $this->getFullPath($image, $folder, $file_type);
+                return !is_file($path);
+            }
+        );
 
     }
 
