@@ -15,12 +15,17 @@ abstract class CrawlerAbstract
         return $this->base_folder;
     }
 
-    protected function getUrlContents($url)
+    protected function getUrlContents($url, $post = false)
     {
 
         Log::debug('Fetching url ' . $url);
 
-        $contents = @file_get_contents($url);
+        if ($post) {
+            $stream_context = $this->createStreamContext($post);
+            $contents = @file_get_contents($url, false, $stream_context);
+        } else {
+            $contents = @file_get_contents($url);
+        }
 
         if ($contents === false) {
             Log::warning('Error occured when fetching url ' . $url . ': ' . $this->getLastError($url));
@@ -28,6 +33,22 @@ abstract class CrawlerAbstract
         }
 
         return $contents;
+
+    }
+
+    private function createStreamContext($post)
+    {
+
+        $post = http_build_query($post);
+        $options = [
+            'http' => [
+                'method'  => 'POST',
+                'header'  => 'Content-type: application/x-www-form-urlencoded',
+                'content' => $post
+            ]
+        ];
+
+        return stream_context_create($options);
 
     }
 
