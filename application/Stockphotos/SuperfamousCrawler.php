@@ -7,7 +7,19 @@ class SuperfamousCrawler extends StockphotoCrawlerAbstract implements Stockphoto
 
     private $link = 'http://superfamous.com/designs/fullfeed/main-pagination.php';
     private $folder = 'superfamous';
-    private $licence = 'Creative Commons Attribution 3.0 to superfamous (Folkert Gorter)';
+
+    public function getName()
+    {
+        return 'superfamous';
+    }
+
+    public function getLicence()
+    {
+        return [
+            'text' => "Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.",
+            'link' => 'http://creativecommons.org/licenses/by/3.0/'
+        ];
+    }
 
     public function run()
     {

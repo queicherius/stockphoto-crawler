@@ -9,22 +9,23 @@ $collection = new CrawlerCollection();
 $collection->setBaseFolder('contents');
 
 // Add crawlers
-// $collection->add(new Stockphotos\LittleVisualsCrawler);
-// $collection->add(new Stockphotos\UnsplashCrawler);
-// $collection->add(new Stockphotos\GratisographyCrawler);
-// $collection->add(new Stockphotos\GetrefeCrawler);
-// $collection->add(new Stockphotos\PicjumboCrawler);
-// $collection->add(new Stockphotos\PatternlibraryCrawler);
-// $collection->add(new Stockphotos\NewoldstockCrawler);
+$collection->add(new Stockphotos\LittleVisualsCrawler);
+$collection->add(new Stockphotos\UnsplashCrawler);
+$collection->add(new Stockphotos\GratisographyCrawler);
+$collection->add(new Stockphotos\GetrefeCrawler);
+$collection->add(new Stockphotos\PicjumboCrawler);
+$collection->add(new Stockphotos\PatternlibraryCrawler);
+$collection->add(new Stockphotos\NewoldstockCrawler);
 $collection->add(new Stockphotos\SuperfamousCrawler);
 
 /*
 // TODO warnings
-// TODO licence printer
-
-Attribution:
-http://imcreator.com/free
+// TODO http://imcreator.com/free
+// TODO some separation of concerns? HTTP class, FILE class?
 */
 
 // Run crawlers
 $collection->run();
+
+// Licences
+$collection->licences('LICENCES.md');

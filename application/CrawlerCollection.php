@@ -34,4 +34,24 @@ class CrawlerCollection
 
     }
 
+    public function licences($file)
+    {
+
+        $path = $this->base_folder . '/' . $file;
+
+        Log::info("Writing licence file to " . $path);
+
+        $contents = '';
+
+        foreach ($this->crawlers as $crawler) {
+
+            $contents .= "# " . $crawler->getName() . "\n\n" . $crawler->getLicence()['text'] . "\n" . $crawler->getLicence()['link'] . "\n\n---\n\n";
+
+        }
+
+        // FIXME file class
+        file_put_contents($path, $contents);
+
+    }
+
 }

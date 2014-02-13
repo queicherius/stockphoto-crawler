@@ -6,6 +6,19 @@ class GratisographyCrawler extends StockphotoCrawlerAbstract implements Stockpho
     private $link = 'http://www.gratisography.com';
     private $folder = 'gratisography';
 
+    public function getName()
+    {
+        return 'gratisography';
+    }
+
+    public function getLicence()
+    {
+        return [
+            'text' => 'Using CC0, you can waive all copyrights and related or neighboring rights that you have over your work, such as your moral rights (to the extent waivable), your publicity or privacy rights, rights you have protecting against unfair competition, and database rights and rights protecting the extraction, dissemination and reuse of data.',
+            'link' => 'http://creativecommons.org/choose/zero/'
+        ];
+    }
+
     public function run()
     {
 

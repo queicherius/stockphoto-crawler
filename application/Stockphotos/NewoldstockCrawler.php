@@ -8,6 +8,19 @@ class NewoldstockCrawler extends StockphotoCrawlerAbstract implements Stockphoto
     private $link = 'http://nos.twnsnd.co';
     private $folder = 'newoldstock';
 
+    public function getName()
+    {
+        return 'newoldstock';
+    }
+
+    public function getLicence()
+    {
+        return [
+            'text' => "No known copyright restrictions.",
+            'link' => 'http://www.flickr.com/commons/usage/'
+        ];
+    }
+
     public function run()
     {
 

@@ -6,6 +6,19 @@ class PicjumboCrawler extends StockphotoCrawlerAbstract implements StockphotoCra
     private $link = 'http://picjumbo.com/';
     private $folder = 'picjumbo';
 
+    public function getName()
+    {
+        return 'picjumbo';
+    }
+
+    public function getLicence()
+    {
+        return [
+            'text' => "Totally free photos for your commercial & personal works",
+            'link' => 'http://picjumbo.com/'
+        ];
+    }
+
     public function run()
     {
 
@@ -36,14 +49,17 @@ class PicjumboCrawler extends StockphotoCrawlerAbstract implements StockphotoCra
     private function getImageLinks($content)
     {
 
-        http://picjumbo.com/wp-content/uploads/IMG_3053-1300x866.jpg
+        http: //picjumbo.com/wp-content/uploads/IMG_3053-1300x866.jpg
         preg_match_all('#http://picjumbo\.picjumbocom\.netdna-cdn[^"]*IMG_[\d]*[^"]*#', $content, $array);
 
         $array = $array[0];
 
-        array_walk($array, function (&$value) {
-            $value = preg_replace('#-[^\/\.]*(\.[\w]*)$#', '$1', $value);
-        });
+        array_walk(
+            $array,
+            function (&$value) {
+                $value = preg_replace('#-[^\/\.]*(\.[\w]*)$#', '$1', $value);
+            }
+        );
 
         return array_unique($array);
     }

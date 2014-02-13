@@ -6,6 +6,19 @@ class GetrefeCrawler extends StockphotoCrawlerAbstract implements StockphotoCraw
     private $link = 'http://getrefe.tumblr.com';
     private $folder = 'getrefe';
 
+    public function getName()
+    {
+        return 'getrefe';
+    }
+
+    public function getLicence()
+    {
+        return [
+            'text' => 'Free photos for your personal or commercial projects',
+            'link' => 'http://getrefe.tumblr.com/'
+        ];
+    }
+
     public function run()
     {
 
