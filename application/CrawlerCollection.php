@@ -45,7 +45,9 @@ class CrawlerCollection
 
         foreach ($this->crawlers as $crawler) {
 
-            $contents .= "# " . $crawler->getName() . "\n\n" . $crawler->getLicence()['text'] . "\n" . $crawler->getLicence()['link'] . "\n\n---\n\n";
+            $contents .= "# " . $crawler->getName() . "\n\n";
+            $contents .= $crawler->getLicence()['text'] . "\n" . $crawler->getLicence()['link'] . "\n\n";
+            $contents .= "---\n\n";
 
         }
 

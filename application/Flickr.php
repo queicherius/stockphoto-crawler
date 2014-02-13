@@ -33,7 +33,7 @@ class Flickr extends CrawlerAbstract
         $contents = $this->getUrlContents($url);
         $url = $this->findOriginalImage($contents);
 
-        if($url === false){
+        if ($url === false) {
             Log::warning('No flickr image found on url ' . $url);
         }
 
@@ -50,7 +50,7 @@ class Flickr extends CrawlerAbstract
     {
         preg_match('#<img src="(http://[^\.]*.staticflickr.[^"]*)">#', $content, $matches);
 
-        if (!isset($matches[1])){
+        if (!isset($matches[1])) {
             return false;
         }
 

@@ -7,5 +7,6 @@ interface CrawlerInterface
     public function setBaseFolder($folder);
 
     public function getName();
+
     public function getLicence();
 }

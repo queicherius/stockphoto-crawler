@@ -36,9 +36,12 @@ class GratisographyCrawler extends StockphotoCrawlerAbstract implements Stockpho
 
         $array = $array[0];
 
-        array_walk($array, function (&$value) {
-            $value = $this->link . '/' . $value;
-        });
+        array_walk(
+            $array,
+            function (&$value) {
+                $value = $this->link . '/' . $value;
+            }
+        );
 
         return array_unique($array);
     }

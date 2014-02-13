@@ -19,7 +19,7 @@ class Log
 
         if (isset($arguments[1])) {
             $end_of_line = $arguments[1];
-        }else{
+        } else {
             $end_of_line = "\n";
         }
 

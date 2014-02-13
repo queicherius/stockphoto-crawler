@@ -43,9 +43,12 @@ class SuperfamousCrawler extends StockphotoCrawlerAbstract implements Stockphoto
         $flickr = new Flickr;
         $image_links = $flickr->getOriginalImageUrls($image_links);
 
-        array_walk($image_links, function (&$value){
-            $value = ['image' => $value, 'attribution' => 'superfamous'];
-        });
+        array_walk(
+            $image_links,
+            function (&$value) {
+                $value = ['image' => $value, 'attribution' => 'superfamous'];
+            }
+        );
 
         $this->downloadImages($image_links, $this->folder);
 
@@ -54,19 +57,19 @@ class SuperfamousCrawler extends StockphotoCrawlerAbstract implements Stockphoto
     private function getPage($number)
     {
         $form_data = [
-            'should_paginate' => true,
-            'is_updating' => true,
-            'within_bounds' => true,
+            'should_paginate'  => true,
+            'is_updating'      => true,
+            'within_bounds'    => true,
             'preload_distance' => 1500,
-            'page' => $number,
+            'page'             => $number,
             'more_load_handle' => '#moreload',
-            'ajax_route' => '../designs/fullfeed/main-pagination.php',
-            'is_ajax' => true,
-            'height_selector' => '#content_container',
-            'limit' => 24,
-            'offset' => $number * 24,
-            'url' => 'superfamous',
-            'cat' => NULL
+            'ajax_route'       => '../designs/fullfeed/main-pagination.php',
+            'is_ajax'          => true,
+            'height_selector'  => '#content_container',
+            'limit'            => 24,
+            'offset'           => $number * 24,
+            'url'              => 'superfamous',
+            'cat'              => null
         ];
         $content = $this->getUrlContents($this->link, $form_data);
 
