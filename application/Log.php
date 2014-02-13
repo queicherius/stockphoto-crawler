@@ -17,30 +17,42 @@ class Log
         $type = strtoupper($type);
         $message = trim($arguments[0], "    \n");
 
+        if (isset($arguments[1])) {
+            $end_of_line = $arguments[1];
+        }else{
+            $end_of_line = "\n";
+        }
+
         if (in_array($type, self::$disabled)) {
             return false;
         }
 
-        echo self::preText($type) . $message . "\n";
+        echo self::preText($type) . $message . $end_of_line;
     }
 
     private static function preText($type)
     {
 
         $date = '[' . self::dateString() . ']';
-        $type = self::colorString($type, '[' . $type . ']');
+        $type = self::typeColor($type, '[' . $type . ']');
 
         return $date . $type . ' ';
     }
 
-    private static function colorString($type, $string)
+    private static function typeColor($type, $string)
     {
 
         if (!isset(self::$colors[$type])) {
             return $string;
         }
 
-        return "\033[" . self::$colors[$type] . "m" . $string . "\033[0m";
+        return self::colorString(self::$colors[$type], $string);
+
+    }
+
+    public static function colorString($color, $string)
+    {
+        return "\033[" . $color . "m" . $string . "\033[0m";
     }
 
     private static function dateString()
