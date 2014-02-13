@@ -1,33 +1,28 @@
 <?php
 
-require_once "application/Log.php";
-require_once "application/CrawlerInterface.php";
-require_once "application/CrawlerAbstract.php";
-require_once "application/CrawlerCollection.php";
-
-require_once "application/Stockphotos/StockphotoCrawlerInterface.php";
-require_once "application/Stockphotos/StockphotoCrawlerAbstract.php";
-require_once "application/Stockphotos/LittleVisualsCrawler.php";
+require_once "application/Autoloader.php";
 
 // Set log mode
-Log::$disabled = ['DEBUG'];
+Log::$disabled = ['DEBUG', 'WARNING'];
 
 $collection = new CrawlerCollection();
 $collection->setBaseFolder('contents');
 
 // Add crawlers
-$collection->add(new Stockphotos\LittleVisualsCrawler);
+// $collection->add(new Stockphotos\LittleVisualsCrawler);
+// $collection->add(new Stockphotos\UnsplashCrawler);
+// $collection->add(new Stockphotos\GratisographyCrawler);
+// $collection->add(new Stockphotos\GetrefeCrawler);
+// $collection->add(new Stockphotos\PicjumboCrawler);
+// $collection->add(new Stockphotos\PatternlibraryCrawler);
+// $collection->add(new Stockphotos\NewoldstockCrawler);
+$collection->add(new Stockphotos\SuperfamousCrawler);
 
 /*
- * file type stuff
-http://unsplash.com/
-http://join.deathtothestockphoto.com/
-http://nos.twnsnd.co/
-http://superfamous.com/
-http://picjumbo.com/
-http://thepatternlibrary.com/
-http://www.gratisography.com/
-http://getrefe.tumblr.com/
+// TODO warnings
+// TODO licence printer
+
+Attribution:
 http://imcreator.com/free
 */
 
