@@ -1,7 +1,5 @@
 <?php namespace Stockphotos;
 
-use Log;
-
 class LittleVisualsCrawler extends StockphotoCrawlerAbstract implements StockphotoCrawlerInterface
 {
 
@@ -26,7 +24,7 @@ class LittleVisualsCrawler extends StockphotoCrawlerAbstract implements Stockpho
         } while (count($page_links) > 0);
 
         $image_links = array_unique($image_links);
-        $this->downloadImages($image_links, $this->folder, 'jpg');
+        $this->downloadImages($image_links, $this->folder);
 
     }
 
