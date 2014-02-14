@@ -43,7 +43,7 @@ class GetrefeCrawler extends StockphotoCrawlerAbstract implements StockphotoCraw
 
     private function getPage($number)
     {
-        return $this->getUrlContents($this->link . '/page/' . $number);
+        return $this->fetchUrl($this->link . '/page/' . $number);
     }
 
     private function getImageLinks($content)

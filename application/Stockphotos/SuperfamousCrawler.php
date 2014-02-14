@@ -71,7 +71,7 @@ class SuperfamousCrawler extends StockphotoCrawlerAbstract implements Stockphoto
             'url'              => 'superfamous',
             'cat'              => null
         ];
-        $content = $this->getUrlContents($this->link, $form_data);
+        $content = $this->fetchUrl($this->link, $form_data);
 
         $content = json_decode($content)->html;
 

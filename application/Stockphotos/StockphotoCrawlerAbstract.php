@@ -45,7 +45,7 @@ abstract class StockphotoCrawlerAbstract extends CrawlerAbstract
     {
 
         $path = $this->getFullPath($url, $folder, $attribution);
-        $contents = $this->getUrlContents($url);
+        $contents = $this->fetchUrl($url);
 
         if ($contents) {
             $this->saveFile($path, $contents);

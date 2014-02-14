@@ -18,8 +18,7 @@ abstract class CrawlerAbstract
         return $this->base_folder;
     }
 
-    // FIXME rename?
-    protected function getUrlContents($url, $post = false)
+    protected function fetchUrl($url, $post = false)
     {
 
         Log::debug("Fetching url {$url}");
@@ -36,7 +35,6 @@ abstract class CrawlerAbstract
         return $content;
     }
 
-    // FIXME rename?
     protected function saveFile($path, $content)
     {
 

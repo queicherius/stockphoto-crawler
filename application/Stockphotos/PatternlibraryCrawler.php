@@ -22,7 +22,7 @@ class PatternlibraryCrawler extends StockphotoCrawlerAbstract implements Stockph
     public function run()
     {
 
-        $content = $this->getUrlContents($this->link);
+        $content = $this->fetchUrl($this->link);
         $image_links = $this->getImageLinks($content);
 
         $this->downloadImages($image_links, $this->folder);

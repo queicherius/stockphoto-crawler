@@ -30,7 +30,7 @@ class Flickr extends CrawlerAbstract
 
         $url = $this->getSizesUrl($url);
 
-        $contents = $this->getUrlContents($url);
+        $contents = $this->fetchUrl($url);
         $url = $this->findOriginalImage($contents);
 
         if ($url === false) {
