@@ -16,12 +16,7 @@ class Console
 
         $type = strtoupper($type);
         $message = trim($arguments[0], "    \n");
-
-        if (isset($arguments[1])) {
-            $end_of_line = $arguments[1];
-        } else {
-            $end_of_line = "\n";
-        }
+        $end_of_line = (isset($arguments[1])) ? $arguments[1] : "\n";
 
         if (in_array($type, self::$disabled)) {
             return false;
