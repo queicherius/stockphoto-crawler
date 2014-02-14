@@ -1,6 +1,7 @@
 <?php
 
 use Console\Console;
+use File\File;
 
 class CrawlerCollection
 {
@@ -36,25 +37,30 @@ class CrawlerCollection
 
     }
 
-    public function licences($file)
+    public function licences($file_name)
     {
 
-        $path = $this->base_folder . '/' . $file;
+        $file = new File;
+        $file->path = $this->base_folder . '/' . $file_name;
 
-        Console::info("Writing licence file to " . $path);
+        Console::info("Writing licence file to {$file->path}");
 
-        $contents = '';
+        $licences = [];
 
         foreach ($this->crawlers as $crawler) {
 
-            $contents .= "# " . $crawler->getName() . "\n\n";
-            $contents .= $crawler->getLicence()['text'] . "\n" . $crawler->getLicence()['link'] . "\n\n";
-            $contents .= "---\n\n";
+            $name = $crawler->getName();
+            $licence = $crawler->getLicence();
+
+            $underline = str_repeat('=', strlen($name));
+            $text = wordwrap($licence['text'], 80);
+
+            $licences[] = "{$name}\n{$underline}\n\n{$text}\n{$licence['link']}";
 
         }
 
-        // FIXME file class
-        file_put_contents($path, $contents);
+        $file->content = implode("\n\n---\n\n", $licences);
+        $file->save();
 
     }
 
