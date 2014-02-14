@@ -3,7 +3,7 @@
 require_once "application/Autoloader.php";
 
 // Set log mode
-Log::$disabled = ['DEBUG', 'WARNING'];
+Console\Console::$disabled = ['DEBUG', 'WARNING'];
 
 $collection = new CrawlerCollection();
 $collection->setBaseFolder('contents');
@@ -17,12 +17,6 @@ $collection->add(new Stockphotos\PicjumboCrawler);
 $collection->add(new Stockphotos\PatternlibraryCrawler);
 $collection->add(new Stockphotos\NewoldstockCrawler);
 $collection->add(new Stockphotos\SuperfamousCrawler);
-
-/*
-// TODO warnings
-// TODO http://imcreator.com/free
-// TODO some separation of concerns? HTTP class, FILE class?
-*/
 
 // Run crawlers
 $collection->run();

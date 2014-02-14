@@ -2,6 +2,7 @@
 
 use Http\Http;
 use File\File;
+use Console\Console;
 
 abstract class CrawlerAbstract
 {
@@ -21,7 +22,7 @@ abstract class CrawlerAbstract
     protected function fetchUrl($url, $post = false)
     {
 
-        Log::debug("Fetching url {$url}");
+        Console::debug("Fetching url {$url}");
 
         $http = new Http;
         $content = false;
@@ -29,7 +30,7 @@ abstract class CrawlerAbstract
         try {
             $content = $http->fetch($url, $post);
         } catch (Exception $e) {
-            Log::warning("Error fetching url {$url}: {$e->getMessage()}");
+            Console::warning("Error fetching url {$url}: {$e->getMessage()}");
         }
 
         return $content;
@@ -38,7 +39,7 @@ abstract class CrawlerAbstract
     protected function saveFile($path, $content)
     {
 
-        Log::debug("Saving file {$this->path}");
+        Console::debug("Saving file {$this->path}");
 
         $file = new File;
         $file->path = $path;

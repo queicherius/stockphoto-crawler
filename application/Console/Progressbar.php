@@ -1,6 +1,4 @@
-<?php namespace Log;
-
-use Log;
+<?php namespace Console;
 
 class Progressbar
 {
@@ -17,7 +15,7 @@ class Progressbar
 
         $end_of_line = ($percent === 100) ? "\n" : "\r";
 
-        Log::info($string, $end_of_line);
+        Console::info($string, $end_of_line);
 
     }
 
@@ -33,7 +31,7 @@ class Progressbar
 
     private function renderBar($blocks)
     {
-        $done = Log::colorString(self::$color, str_repeat('#', $blocks));
+        $done = Console::colorString(self::$color, str_repeat('#', $blocks));
         $not_done = str_repeat(' ', self::$blocks - $blocks);
 
         return 'Progress: [' . $done . $not_done . ']';

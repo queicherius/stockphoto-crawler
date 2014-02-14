@@ -1,5 +1,7 @@
 <?php
 
+use Console\Console;
+
 class CrawlerCollection
 {
 
@@ -14,7 +16,7 @@ class CrawlerCollection
     public function add(CrawlerInterface $crawler)
     {
 
-        Log::info("Added crawler " . get_class($crawler));
+        Console::info("Added crawler " . get_class($crawler));
 
         $this->crawlers[] = $crawler;
 
@@ -25,10 +27,10 @@ class CrawlerCollection
 
         foreach ($this->crawlers as $crawler) {
 
-            Log::info("Running crawler " . get_class($crawler) . "... ");
+            Console::info("Running crawler " . get_class($crawler) . "... ");
             $crawler->setBaseFolder($this->base_folder);
             $crawler->run();
-            Log::info("Done running crawler " . get_class($crawler));
+            Console::info("Done running crawler " . get_class($crawler));
 
         }
 
@@ -39,7 +41,7 @@ class CrawlerCollection
 
         $path = $this->base_folder . '/' . $file;
 
-        Log::info("Writing licence file to " . $path);
+        Console::info("Writing licence file to " . $path);
 
         $contents = '';
 

@@ -1,5 +1,8 @@
 <?php
 
+use Console\Console;
+use Console\Progressbar;
+
 class Flickr extends CrawlerAbstract
 {
 
@@ -7,8 +10,8 @@ class Flickr extends CrawlerAbstract
     {
         $original_images = [];
 
-        Log::info("Getting original image urls for " . count($images) . " flickr links...");
-        $progress = new Log\Progressbar;
+        Console::info("Getting original image urls for " . count($images) . " flickr links...");
+        $progress = new Progressbar();
 
         $counter = 0;
 
@@ -34,7 +37,7 @@ class Flickr extends CrawlerAbstract
         $url = $this->findOriginalImage($contents);
 
         if ($url === false) {
-            Log::warning('No flickr image found on url ' . $url);
+            Console::warning('No flickr image found on url ' . $url);
         }
 
         return $url;

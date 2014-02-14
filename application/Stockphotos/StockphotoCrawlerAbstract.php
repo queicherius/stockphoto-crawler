@@ -1,7 +1,8 @@
 <?php namespace Stockphotos;
 
 use CrawlerAbstract;
-use Log;
+use Console\Console;
+use Console\Progressbar;
 
 abstract class StockphotoCrawlerAbstract extends CrawlerAbstract
 {
@@ -17,9 +18,9 @@ abstract class StockphotoCrawlerAbstract extends CrawlerAbstract
 
         $skiped_images = $count - count($images);
 
-        Log::info('Downloading ' . count($images) . ' images (' . $skiped_images . ' skiped)...');
+        Console::info('Downloading ' . count($images) . ' images (' . $skiped_images . ' skiped)...');
 
-        $progess = new Log\Progressbar();
+        $progess = new Progressbar();
 
         $counter = 0;
 
