@@ -1,7 +1,5 @@
 <?php namespace Stockphotos;
 
-use Log;
-
 class UnsplashCrawler extends StockphotoCrawlerAbstract implements StockphotoCrawlerInterface
 {
 
