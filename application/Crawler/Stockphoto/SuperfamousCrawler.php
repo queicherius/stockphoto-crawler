@@ -1,8 +1,8 @@
-<?php namespace Stockphotos;
+<?php namespace Crawler\Stockphoto;
 
-use Flickr;
+use Crawler\Flickr\Flickr;
 
-class SuperfamousCrawler extends StockphotoCrawlerAbstract implements StockphotoCrawlerInterface
+class SuperfamousCrawler extends StockphotoCrawler implements StockphotoCrawlerInterface
 {
 
     private $link = 'http://superfamous.com/designs/fullfeed/main-pagination.php';
@@ -40,7 +40,7 @@ class SuperfamousCrawler extends StockphotoCrawlerAbstract implements Stockphoto
 
         $image_links = array_unique($image_links);
 
-        $flickr = new Flickr;
+        $flickr = new Flickr();
         $image_links = $flickr->getOriginalImageUrls($image_links);
 
         array_walk(

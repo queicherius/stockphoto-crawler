@@ -1,14 +1,14 @@
-<?php namespace Stockphotos;
+<?php namespace Crawler\Stockphoto;
 
-class UnsplashCrawler extends StockphotoCrawlerAbstract implements StockphotoCrawlerInterface
+class LittleVisualsCrawler extends StockphotoCrawler implements StockphotoCrawlerInterface
 {
 
-    private $link = 'http://unsplash.com';
-    private $folder = 'unsplash';
+    private $link = 'http://littlevisuals.co';
+    private $folder = 'littlevisuals';
 
     public function getName()
     {
-        return 'unsplash';
+        return 'littlevisuals';
     }
 
     public function getLicence()

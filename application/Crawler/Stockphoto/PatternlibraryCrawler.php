@@ -1,6 +1,6 @@
-<?php namespace Stockphotos;
+<?php namespace Crawler\Stockphoto;
 
-class PatternlibraryCrawler extends StockphotoCrawlerAbstract implements StockphotoCrawlerInterface
+class PatternlibraryCrawler extends StockphotoCrawler implements StockphotoCrawlerInterface
 {
 
     private $link = 'http://thepatternlibrary.com/js/pattern-library.js';

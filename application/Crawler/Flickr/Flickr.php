@@ -1,9 +1,10 @@
-<?php
+<?php namespace Crawler\Flickr;
 
+use Crawler\Crawler;
 use Console\Console;
 use Console\Progressbar;
 
-class Flickr extends CrawlerAbstract
+class Flickr extends Crawler
 {
 
     public function getOriginalImageUrls($images)

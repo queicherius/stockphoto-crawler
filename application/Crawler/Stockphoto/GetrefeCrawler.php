@@ -1,6 +1,6 @@
-<?php namespace Stockphotos;
+<?php namespace Crawler\Stockphoto;
 
-class GetrefeCrawler extends StockphotoCrawlerAbstract implements StockphotoCrawlerInterface
+class GetrefeCrawler extends StockphotoCrawler implements StockphotoCrawlerInterface
 {
 
     private $link = 'http://getrefe.tumblr.com';

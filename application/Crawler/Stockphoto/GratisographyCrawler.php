@@ -1,6 +1,6 @@
-<?php namespace Stockphotos;
+<?php namespace Crawler\Stockphoto;
 
-class GratisographyCrawler extends StockphotoCrawlerAbstract implements StockphotoCrawlerInterface
+class GratisographyCrawler extends StockphotoCrawler implements StockphotoCrawlerInterface
 {
 
     private $link = 'http://www.gratisography.com';

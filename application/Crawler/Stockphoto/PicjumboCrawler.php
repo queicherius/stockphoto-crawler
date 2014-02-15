@@ -1,9 +1,9 @@
-<?php namespace Stockphotos;
+<?php namespace Crawler\Stockphoto;
 
-class PicjumboCrawler extends StockphotoCrawlerAbstract implements StockphotoCrawlerInterface
+class PicjumboCrawler extends StockphotoCrawler implements StockphotoCrawlerInterface
 {
 
-    private $link = 'http://picjumbo.com/';
+    private $link = 'http://picjumbo.com';
     private $folder = 'picjumbo';
 
     public function getName()
@@ -49,7 +49,6 @@ class PicjumboCrawler extends StockphotoCrawlerAbstract implements StockphotoCra
     private function getImageLinks($content)
     {
 
-        http: //picjumbo.com/wp-content/uploads/IMG_3053-1300x866.jpg
         preg_match_all('#http://picjumbo\.picjumbocom\.netdna-cdn[^"]*IMG_[\d]*[^"]*#', $content, $array);
 
         $array = $array[0];

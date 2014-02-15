@@ -2,21 +2,24 @@
 
 require_once "application/Autoloader.php";
 
+use Console\Console;
+use Crawler\CrawlerCollection;
+
 // Set log mode
-Console\Console::$disabled = ['DEBUG', 'WARNING'];
+Console::$disabled = ['DEBUG', 'WARNING'];
 
 $collection = new CrawlerCollection();
 $collection->setBaseFolder('contents');
 
 // Add crawlers
-$collection->add(new Stockphotos\LittleVisualsCrawler);
-$collection->add(new Stockphotos\UnsplashCrawler);
-$collection->add(new Stockphotos\GratisographyCrawler);
-$collection->add(new Stockphotos\GetrefeCrawler);
-$collection->add(new Stockphotos\PicjumboCrawler);
-$collection->add(new Stockphotos\PatternlibraryCrawler);
-$collection->add(new Stockphotos\NewoldstockCrawler);
-$collection->add(new Stockphotos\SuperfamousCrawler);
+$collection->add(new Crawler\Stockphoto\LittleVisualsCrawler);
+$collection->add(new Crawler\Stockphoto\UnsplashCrawler);
+$collection->add(new Crawler\Stockphoto\GratisographyCrawler);
+$collection->add(new Crawler\Stockphoto\GetrefeCrawler);
+$collection->add(new Crawler\Stockphoto\PicjumboCrawler);
+$collection->add(new Crawler\Stockphoto\PatternlibraryCrawler);
+$collection->add(new Crawler\Stockphoto\NewoldstockCrawler);
+$collection->add(new Crawler\Stockphoto\SuperfamousCrawler);
 
 // Run crawlers
 $collection->run();
