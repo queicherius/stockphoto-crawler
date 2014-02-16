@@ -13,17 +13,17 @@ class Flickr extends Crawler
         $original_images = [];
 
         Console::info("Getting original image urls for " . count($images) . " flickr links...");
-        $progress = new Progressbar();
-
-        $counter = 0;
+        $progress = new Progressbar(count($images));
 
         foreach ($images as $url) {
 
-            $percent = (++$counter / count($images)) * 100;
+            $original_url = $this->getOriginalImageUrl($url);
 
-            $original_images[] = $this->getOriginalImageUrl($url);
+            if ($original_url) {
+                $original_images[] = $original_url;
+            }
 
-            $progress->setProgress($percent);
+            $progress->increase();
 
         }
 
@@ -36,14 +36,14 @@ class Flickr extends Crawler
 
         $url = $this->getSizesUrl($url);
 
-        $contents = $this->fetchUrl($url);
-        $url = $this->findOriginalImage($contents);
+        $contents = $this->fetchUrl($url, false, true);
+        $original_url = $this->findOriginalImage($contents);
 
-        if ($url === false) {
-            Console::warning('No flickr image found on url ' . $url);
+        if ($original_url === false) {
+            Console::notice('No flickr image found for ' . $url);
         }
 
-        return $url;
+        return $original_url;
 
     }
 
