@@ -20,7 +20,7 @@ abstract class Crawler
         return $this->base_directory;
     }
 
-    protected function fetchUrl($url, $post = false)
+    protected function fetchUrl($url, $post = false, $no_warnings = false)
     {
 
         Console::debug("Fetching url {$url}");
@@ -31,7 +31,9 @@ abstract class Crawler
         try {
             $content = $http->fetch($url, $post);
         } catch (HttpException $e) {
-            Console::warning("Error fetching url {$url}: {$e->getMessage()}");
+            if (!$no_warnings) {
+                Console::warning("Error fetching url {$url}: {$e->getMessage()}");
+            }
         }
 
         return $content;
