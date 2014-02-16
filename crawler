@@ -6,7 +6,7 @@ use Console\Console;
 use Crawler\CrawlerCollection;
 
 // Set log mode
-Console::$disabled = ['DEBUG', 'WARNING'];
+Console::$disabled = ['DEBUG', 'NOTICE'];
 
 $collection = new CrawlerCollection();
 $collection->setBaseDirectory('contents');
