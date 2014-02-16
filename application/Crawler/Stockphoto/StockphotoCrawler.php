@@ -3,45 +3,83 @@
 use Crawler\Crawler;
 use Console\Console;
 use Console\Progressbar;
+use File\File;
 
 abstract class StockphotoCrawler extends Crawler
 {
 
     private static $file_types = ['jpg', 'jpeg', 'gif', 'png'];
     private static $default_file_type = 'jpg';
+    protected $directory = 'default';
 
-    public function downloadImages($images, $folder)
+    public function downloadImages($images)
     {
 
-        $count = count($images);
-        $images = $this->filterExistingFiles($images, $folder);
+        $downloadable_images = count($images);
 
-        $skipped_images = $count - count($images);
+        $images = $this->imagesWithAttribution($images);
+        $images = $this->filterExistingFiles($images);
 
-        Console::info('Downloading ' . count($images) . ' images (' . $skipped_images . ' skipped)...');
+        $new_images = count($images);
 
-        $progess = new Progressbar(count($images));
+        $skipped_images = $downloadable_images - $new_images;
+
+        Console::info('Downloading ' . $new_images . ' images (' . $skipped_images . ' skipped)...');
+
+        $progess = new Progressbar($new_images);
 
         foreach ($images as $image) {
 
-            $attribution = false;
-
-            if (is_array($image)) {
-                $attribution = $image['attribution'];
-                $image = $image['image'];
-            }
-
-            $this->downloadImage($image, $folder, $attribution);
+            $this->downloadImage($image['image'], $image['attribution']);
             $progess->increase();
 
         }
 
     }
 
-    public function downloadImage($url, $folder, $attribution = false)
+    private function imagesWithAttribution($images)
     {
 
-        $path = $this->getFullPath($url, $folder, $attribution);
+        array_walk(
+            $images,
+            function (&$image) {
+
+                if (!is_array($image)) {
+
+                    $image = [
+                        'image'       => $image,
+                        'attribution' => false
+                    ];
+
+                }
+
+            }
+        );
+
+        return $images;
+
+    }
+
+    private function filterExistingFiles($images)
+    {
+
+        return array_filter(
+            $images,
+            function ($image) {
+
+                $file = new File();
+                $file->path = $this->getFilePath($image['image'], $image['attribution']);
+                return !$file->exists();
+
+            }
+        );
+
+    }
+
+    public function downloadImage($url, $attribution = false)
+    {
+
+        $path = $this->getFilePath($url, $attribution);
         $contents = $this->fetchUrl($url);
 
         if ($contents) {
@@ -50,37 +88,13 @@ abstract class StockphotoCrawler extends Crawler
 
     }
 
-    private function filterExistingFiles($images, $folder)
+    private function getFilePath($url, $attribution)
     {
 
-        return array_filter(
-            $images,
-            function ($image) use ($folder) {
+        $attribution = ($attribution) ? '-by-' . $attribution : '';
 
-                $attribution = false;
-
-                if (is_array($image)) {
-                    $attribution = $image['attribution'];
-                    $image = $image['image'];
-                }
-
-                $path = $this->getFullPath($image, $folder, $attribution);
-                return !is_file($path);
-            }
-        );
-
-    }
-
-    private function getFullPath($url, $folder, $attribution)
-    {
-
-        if ($attribution) {
-            $attribution = '-by-' . $attribution;
-        } else {
-            $attribution = '';
-        }
-
-        return $this->getBaseDirectory() . '/' . $folder . '/' . md5($url) . $attribution . '.' . $this->getFileType($url);
+        return $this->getBaseDirectory() . '/' . $this->directory . '/' .
+        md5($url) . $attribution . '.' . $this->getFileType($url);
 
     }
 

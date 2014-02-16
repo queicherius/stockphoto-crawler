@@ -4,7 +4,7 @@ class LittleVisualsCrawler extends StockphotoCrawler implements StockphotoCrawle
 {
 
     private $link = 'http://littlevisuals.co';
-    private $folder = 'littlevisuals';
+    protected $directory = 'littlevisuals';
 
     public function getName()
     {
@@ -39,7 +39,7 @@ class LittleVisualsCrawler extends StockphotoCrawler implements StockphotoCrawle
         } while (count($page_links) > 0);
 
         $image_links = array_unique($image_links);
-        $this->downloadImages($image_links, $this->folder);
+        $this->downloadImages($image_links);
 
     }
 

@@ -4,7 +4,7 @@ class PatternlibraryCrawler extends StockphotoCrawler implements StockphotoCrawl
 {
 
     private $link = 'http://thepatternlibrary.com/js/pattern-library.js';
-    private $folder = 'patternlibrary';
+    protected $directory = 'patternlibrary';
 
     public function getName()
     {
@@ -27,7 +27,7 @@ class PatternlibraryCrawler extends StockphotoCrawler implements StockphotoCrawl
         $content = $this->fetchUrl($this->link);
         $image_links = $this->getImageLinks($content);
 
-        $this->downloadImages($image_links, $this->folder);
+        $this->downloadImages($image_links);
 
     }
 

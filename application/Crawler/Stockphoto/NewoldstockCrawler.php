@@ -6,7 +6,7 @@ class NewoldstockCrawler extends StockphotoCrawler implements StockphotoCrawlerI
 {
 
     private $link = 'http://nos.twnsnd.co';
-    private $folder = 'newoldstock';
+    protected $directory = 'newoldstock';
 
     public function getName()
     {
@@ -45,7 +45,7 @@ class NewoldstockCrawler extends StockphotoCrawler implements StockphotoCrawlerI
         $flickr = new Flickr();
         $image_links = $flickr->getOriginalImageUrls($image_links);
 
-        $this->downloadImages($image_links, $this->folder);
+        $this->downloadImages($image_links);
 
     }
 

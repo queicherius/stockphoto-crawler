@@ -4,7 +4,7 @@ class PicjumboCrawler extends StockphotoCrawler implements StockphotoCrawlerInte
 {
 
     private $link = 'http://picjumbo.com';
-    private $folder = 'picjumbo';
+    protected $directory = 'picjumbo';
 
     public function getName()
     {
@@ -39,7 +39,7 @@ class PicjumboCrawler extends StockphotoCrawler implements StockphotoCrawlerInte
         } while (count($page_links) > 0);
 
         $image_links = array_unique($image_links);
-        $this->downloadImages($image_links, $this->folder);
+        $this->downloadImages($image_links);
 
     }
 

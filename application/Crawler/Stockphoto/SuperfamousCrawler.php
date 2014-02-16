@@ -6,7 +6,7 @@ class SuperfamousCrawler extends StockphotoCrawler implements StockphotoCrawlerI
 {
 
     private $link = 'http://superfamous.com/designs/fullfeed/main-pagination.php';
-    private $folder = 'superfamous';
+    protected $directory = 'superfamous';
 
     public function getName()
     {
@@ -52,7 +52,7 @@ class SuperfamousCrawler extends StockphotoCrawler implements StockphotoCrawlerI
             }
         );
 
-        $this->downloadImages($image_links, $this->folder);
+        $this->downloadImages($image_links);
 
     }
 

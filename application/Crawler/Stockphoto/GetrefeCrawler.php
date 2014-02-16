@@ -4,7 +4,7 @@ class GetrefeCrawler extends StockphotoCrawler implements StockphotoCrawlerInter
 {
 
     private $link = 'http://getrefe.tumblr.com';
-    private $folder = 'getrefe';
+    protected $directory = 'getrefe';
 
     public function getName()
     {
@@ -39,7 +39,7 @@ class GetrefeCrawler extends StockphotoCrawler implements StockphotoCrawlerInter
         } while (count($page_links) > 0);
 
         $image_links = array_unique($image_links);
-        $this->downloadImages($image_links, $this->folder);
+        $this->downloadImages($image_links);
 
     }
 
