@@ -45,7 +45,8 @@ class PicjumboCrawler extends StockphotoCrawler implements StockphotoCrawlerInte
 
     private function getPage($number)
     {
-        return $this->fetchUrl($this->link . '/page/' . $number);
+        // No warnings because the last page throws an 404
+        return $this->fetchUrl($this->link . '/page/' . $number, false, true);
     }
 
     private function getImageLinks($content)
@@ -58,6 +59,7 @@ class PicjumboCrawler extends StockphotoCrawler implements StockphotoCrawlerInte
         array_walk(
             $array,
             function (&$value) {
+                // Remove the size modification to get the original image
                 $value = preg_replace('#-[^\/\.]*(\.[\w]*)$#', '$1', $value);
             }
         );
