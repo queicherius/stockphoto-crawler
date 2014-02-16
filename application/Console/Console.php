@@ -23,11 +23,11 @@ class Console
             return false;
         }
 
-        echo self::preText($type) . $message . $end_of_line;
+        echo self::heading($type) . $message . $end_of_line;
 
     }
 
-    private static function preText($type)
+    private static function heading($type)
     {
 
         $date = '[' . self::dateString() . ']';
