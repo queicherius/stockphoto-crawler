@@ -17,7 +17,7 @@ class Http
         $content = $this->executeRequest();
 
         if ($this->hasError()) {
-            throw new HttpException("{$this->getErrorMessage()}");
+            throw new HttpException($this->getErrorMessage());
         }
 
         $this->closeRequest();
