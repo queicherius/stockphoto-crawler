@@ -16,17 +16,13 @@ abstract class StockphotoCrawler extends Crawler
         $count = count($images);
         $images = $this->filterExistingFiles($images, $folder);
 
-        $skiped_images = $count - count($images);
+        $skipped_images = $count - count($images);
 
-        Console::info('Downloading ' . count($images) . ' images (' . $skiped_images . ' skiped)...');
+        Console::info('Downloading ' . count($images) . ' images (' . $skipped_images . ' skipped)...');
 
-        $progess = new Progressbar();
-
-        $counter = 0;
+        $progess = new Progressbar(count($images));
 
         foreach ($images as $image) {
-
-            $percent = (++$counter / count($images)) * 100;
 
             $attribution = false;
 
@@ -36,7 +32,7 @@ abstract class StockphotoCrawler extends Crawler
             }
 
             $this->downloadImage($image, $folder, $attribution);
-            $progess->setProgress($percent);
+            $progess->increase();
 
         }
 
