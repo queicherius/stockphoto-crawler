@@ -5,8 +5,24 @@ class Progressbar
 
     private static $color = '32';
     private static $blocks = 20;
+    private $current_element = 0;
+    private $max_elements;
 
-    public function setProgress($percent)
+    public function __construct($max_elements)
+    {
+        $this->max_elements = $max_elements;
+    }
+
+    public function increase($amount = 1)
+    {
+
+        $this->current_element += $amount;
+        $percent = ($this->current_element / $this->max_elements) * 100;
+        $this->setProgress($percent);
+
+    }
+
+    private function setProgress($percent)
     {
 
         $blocks = $this->calculateBlocks($percent);
@@ -26,7 +42,7 @@ class Progressbar
 
     private function renderText($percent)
     {
-        return ' ' . floor($percent) . '%';
+        return ' ' . floor($percent) . '% (' . $this->current_element . '/' . $this->max_elements . ')';
     }
 
     private function renderBar($blocks)
