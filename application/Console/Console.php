@@ -6,7 +6,8 @@ class Console
     private static $colors = [
         'INFO'    => '32',
         'DEBUG'   => '35',
-        'WARNING' => '31'
+        'WARNING' => '31',
+        'NOTICE'  => '33'
     ];
 
     public static $disabled = [];
