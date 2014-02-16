@@ -24,7 +24,7 @@ abstract class StockphotoCrawler extends Crawler
 
         $skipped_images = $downloadable_images - $new_images;
 
-        Console::info('Downloading ' . $new_images . ' images (' . $skipped_images . ' skipped)...');
+        Console::info("Downloading {$new_images} images ({$skipped_images} skipped)...");
 
         $progess = new Progressbar($new_images);
 

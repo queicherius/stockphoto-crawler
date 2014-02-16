@@ -40,7 +40,7 @@ class Flickr extends Crawler
         $original_url = $this->findOriginalImage($contents);
 
         if ($original_url === false) {
-            Console::notice('No flickr image found for ' . $url);
+            Console::notice("No flickr image found for {$url}");
         }
 
         return $original_url;
