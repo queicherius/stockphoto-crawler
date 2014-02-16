@@ -27,7 +27,6 @@ class GratisographyCrawler extends StockphotoCrawler implements StockphotoCrawle
         $content = $this->fetchUrl($this->link);
         $image_links = $this->getImageLinks($content);
 
-        $image_links = array_unique($image_links);
         $this->downloadImages($image_links, $this->folder);
 
     }
