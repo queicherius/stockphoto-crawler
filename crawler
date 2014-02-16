@@ -9,7 +9,7 @@ use Crawler\CrawlerCollection;
 Console::$disabled = ['DEBUG', 'WARNING'];
 
 $collection = new CrawlerCollection();
-$collection->setBaseFolder('contents');
+$collection->setBaseDirectory('contents');
 
 // Add crawlers
 $collection->add(new Crawler\Stockphoto\LittleVisualsCrawler);

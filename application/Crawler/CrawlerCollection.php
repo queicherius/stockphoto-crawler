@@ -7,11 +7,11 @@ class CrawlerCollection
 {
 
     private $crawlers;
-    private $base_folder;
+    private $base_directory;
 
-    public function setBaseFolder($folder)
+    public function setBaseDirectory($folder)
     {
-        $this->base_folder = $folder;
+        $this->base_directory = $folder;
     }
 
     public function add(CrawlerInterface $crawler)
@@ -29,7 +29,7 @@ class CrawlerCollection
         foreach ($this->crawlers as $crawler) {
 
             Console::info("Running crawler " . get_class($crawler) . "... ");
-            $crawler->setBaseFolder($this->base_folder);
+            $crawler->setBaseDirectory($this->base_directory);
             $crawler->run();
             Console::info("Done running crawler " . get_class($crawler));
 
@@ -41,7 +41,7 @@ class CrawlerCollection
     {
 
         $file = new File;
-        $file->path = $this->base_folder . '/' . $file_name;
+        $file->path = $this->base_directory . '/' . $file_name;
 
         Console::info("Writing licence file to {$file->path}");
 

@@ -4,7 +4,7 @@ interface CrawlerInterface
 {
     public function run();
 
-    public function setBaseFolder($folder);
+    public function setBaseDirectory($folder);
 
     public function getName();
 

@@ -8,16 +8,16 @@ use Console\Console;
 abstract class Crawler
 {
 
-    private $base_folder;
+    private $base_directory;
 
-    public function setBaseFolder($folder)
+    public function setBaseDirectory($folder)
     {
-        $this->base_folder = $folder;
+        $this->base_directory = $folder;
     }
 
-    public function getBaseFolder()
+    public function getBaseDirectory()
     {
-        return $this->base_folder;
+        return $this->base_directory;
     }
 
     protected function fetchUrl($url, $post = false)
