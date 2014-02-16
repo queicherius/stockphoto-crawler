@@ -8,8 +8,8 @@ use File\File;
 abstract class StockphotoCrawler extends Crawler
 {
 
-    private static $file_types = ['jpg', 'jpeg', 'gif', 'png'];
-    private static $default_file_type = 'jpg';
+    private $file_types = ['jpg', 'jpeg', 'gif', 'png'];
+    private $default_file_type = 'jpg';
     protected $directory = 'default';
 
     public function downloadImages($images)
@@ -102,7 +102,7 @@ abstract class StockphotoCrawler extends Crawler
     {
 
         $file_extension = pathinfo($url, PATHINFO_EXTENSION);
-        return (in_array($file_extension, self::$file_types)) ? $file_extension : self::$default_file_type;
+        return (in_array($file_extension, $this->file_types)) ? $file_extension : $this->default_file_type;
 
     }
 

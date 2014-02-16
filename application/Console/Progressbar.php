@@ -3,8 +3,8 @@
 class Progressbar
 {
 
-    private static $color = '32';
-    private static $blocks = 20;
+    private $color = '32';
+    private $blocks = 20;
     private $current_element = 0;
     private $max_elements;
 
@@ -38,7 +38,7 @@ class Progressbar
 
     private function calculateBlocks($percent)
     {
-        return floor($percent * (self::$blocks / 100));
+        return floor($percent * ($this->blocks / 100));
     }
 
     private function renderText($percent)
@@ -49,8 +49,8 @@ class Progressbar
     private function renderBar($blocks)
     {
 
-        $done = Console::colorString(self::$color, str_repeat('#', $blocks));
-        $not_done = str_repeat(' ', self::$blocks - $blocks);
+        $done = Console::colorString($this->color, str_repeat('#', $blocks));
+        $not_done = str_repeat(' ', $this->blocks - $blocks);
 
         return 'Progress: [' . $done . $not_done . ']';
 
