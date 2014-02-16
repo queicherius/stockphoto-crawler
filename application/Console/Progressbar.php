@@ -11,6 +11,7 @@ class Progressbar
     public function __construct($max_elements)
     {
         $this->max_elements = $max_elements;
+        $this->setProgress(0);
     }
 
     public function increase($amount = 1)
