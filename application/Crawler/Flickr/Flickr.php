@@ -9,6 +9,7 @@ class Flickr extends Crawler
 
     public function getOriginalImageUrls($images)
     {
+
         $original_images = [];
 
         Console::info("Getting original image urls for " . count($images) . " flickr links...");
@@ -27,6 +28,7 @@ class Flickr extends Crawler
         }
 
         return array_unique($original_images);
+
     }
 
     public function getOriginalImageUrl($url)
@@ -42,16 +44,17 @@ class Flickr extends Crawler
         }
 
         return $url;
+
     }
 
     private function getSizesUrl($url)
     {
-        $url = trim($url, '/');
-        return $url . '/sizes/o';
+        return trim($url, '/') . '/sizes/o';
     }
 
     private function findOriginalImage($content)
     {
+
         preg_match('#<img src="(http://[^\.]*.staticflickr.[^"]*)">#', $content, $matches);
 
         if (!isset($matches[1])) {
@@ -59,6 +62,7 @@ class Flickr extends Crawler
         }
 
         return $matches[1];
+
     }
 
 }

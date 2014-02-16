@@ -51,6 +51,7 @@ class Http
 
     private function getLastError()
     {
+
         $error_message = error_get_last()['message'];
 
         // Remove url
@@ -60,6 +61,7 @@ class Http
         $error_message = preg_replace('#^.*([0-9]{3})#', '$1', $error_message);
 
         return $error_message;
+
     }
 
 }

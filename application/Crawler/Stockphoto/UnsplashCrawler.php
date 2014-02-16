@@ -13,10 +13,12 @@ class UnsplashCrawler extends StockphotoCrawler implements StockphotoCrawlerInte
 
     public function getLicence()
     {
+
         return [
             'text' => "The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law.\nYou can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.",
             'link' => 'http://creativecommons.org/publicdomain/zero/1.0/'
         ];
+
     }
 
     public function run()
@@ -48,8 +50,10 @@ class UnsplashCrawler extends StockphotoCrawler implements StockphotoCrawlerInte
 
     private function getImageLinks($content)
     {
+
         preg_match_all('#http://bit\.ly/[0-9a-zA-Z]*#', $content, $array);
         return array_unique($array[0]);
+
     }
 
 }

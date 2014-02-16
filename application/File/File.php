@@ -8,11 +8,13 @@ class File
 
     public function save()
     {
+
         if (!$this->directoryExists()) {
             $this->createDirectory();
         }
 
         $this->write();
+
     }
 
     private function directoryExists()
@@ -32,12 +34,14 @@ class File
 
     public function read()
     {
+
         if (!$this->exists()) {
             throw new FileException("File {$this->path} doesn't exist");
         }
 
         $this->content = file_get_contents($this->path);
         return $this->content;
+
     }
 
     public function exists()

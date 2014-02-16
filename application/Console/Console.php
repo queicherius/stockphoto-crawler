@@ -23,6 +23,7 @@ class Console
         }
 
         echo self::preText($type) . $message . $end_of_line;
+
     }
 
     private static function preText($type)
@@ -32,6 +33,7 @@ class Console
         $type = self::typeColor($type, '[' . $type . ']');
 
         return $date . $type . ' ';
+
     }
 
     private static function typeColor($type, $string)

@@ -13,10 +13,12 @@ class PatternlibraryCrawler extends StockphotoCrawler implements StockphotoCrawl
 
     public function getLicence()
     {
+
         return [
             'text' => "TO USE FREELY IN YOUR DESIGNS",
             'link' => 'http://thepatternlibrary.com/'
         ];
+
     }
 
     public function run()
@@ -31,6 +33,7 @@ class PatternlibraryCrawler extends StockphotoCrawler implements StockphotoCrawl
 
     private function getImageLinks($content)
     {
+
         preg_match_all('#file: \'([^\']*)\'#', $content, $array);
 
         $array = $array[1];
@@ -43,6 +46,7 @@ class PatternlibraryCrawler extends StockphotoCrawler implements StockphotoCrawl
         );
 
         return array_unique($array);
+
     }
 
 }

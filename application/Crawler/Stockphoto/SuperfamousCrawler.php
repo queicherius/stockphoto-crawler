@@ -15,10 +15,12 @@ class SuperfamousCrawler extends StockphotoCrawler implements StockphotoCrawlerI
 
     public function getLicence()
     {
+
         return [
             'text' => "Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.",
             'link' => 'http://creativecommons.org/licenses/by/3.0/'
         ];
+
     }
 
     public function run()
@@ -56,6 +58,7 @@ class SuperfamousCrawler extends StockphotoCrawler implements StockphotoCrawlerI
 
     private function getPage($number)
     {
+
         $form_data = [
             'should_paginate'  => true,
             'is_updating'      => true,
@@ -76,13 +79,15 @@ class SuperfamousCrawler extends StockphotoCrawler implements StockphotoCrawlerI
         $content = json_decode($content)->html;
 
         return $content;
+
     }
 
     private function getImageLinks($content)
     {
-        preg_match_all('#http://www\.flickr\.com/photos/superfamous/[^\/\"]*#', $content, $array);
 
+        preg_match_all('#http://www\.flickr\.com/photos/superfamous/[^\/\"]*#', $content, $array);
         return array_unique($array[0]);
+
     }
 
 }

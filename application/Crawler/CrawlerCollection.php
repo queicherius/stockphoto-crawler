@@ -18,7 +18,6 @@ class CrawlerCollection
     {
 
         Console::info("Added crawler " . get_class($crawler));
-
         $this->crawlers[] = $crawler;
 
     }

@@ -15,10 +15,12 @@ class NewoldstockCrawler extends StockphotoCrawler implements StockphotoCrawlerI
 
     public function getLicence()
     {
+
         return [
             'text' => "No known copyright restrictions.",
             'link' => 'http://www.flickr.com/commons/usage/'
         ];
+
     }
 
     public function run()
@@ -54,9 +56,10 @@ class NewoldstockCrawler extends StockphotoCrawler implements StockphotoCrawlerI
 
     private function getImageLinks($content)
     {
-        preg_match_all('#http://flic\.kr/[^"]*#', $content, $array);
 
+        preg_match_all('#http://flic\.kr/[^"]*#', $content, $array);
         return array_unique($array[0]);
+
     }
 
 }

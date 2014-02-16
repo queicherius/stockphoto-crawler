@@ -13,10 +13,12 @@ class PicjumboCrawler extends StockphotoCrawler implements StockphotoCrawlerInte
 
     public function getLicence()
     {
+
         return [
             'text' => "Totally free photos for your commercial & personal works",
             'link' => 'http://picjumbo.com/'
         ];
+
     }
 
     public function run()
@@ -61,6 +63,7 @@ class PicjumboCrawler extends StockphotoCrawler implements StockphotoCrawlerInte
         );
 
         return array_unique($array);
+
     }
 
 }

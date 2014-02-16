@@ -35,6 +35,7 @@ abstract class Crawler
         }
 
         return $content;
+
     }
 
     protected function saveFile($path, $content)
@@ -46,6 +47,7 @@ abstract class Crawler
         $file->path = $path;
         $file->content = $content;
         $file->save();
+
     }
 
 }

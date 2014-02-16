@@ -85,14 +85,15 @@ abstract class StockphotoCrawler extends Crawler
         }
 
         return $this->getBaseDirectory() . '/' . $folder . '/' . md5($url) . $attribution . '.' . $this->getFileType($url);
+
     }
 
     private function getFileType($url)
     {
 
         $file_extension = pathinfo($url, PATHINFO_EXTENSION);
-
         return (in_array($file_extension, self::$file_types)) ? $file_extension : self::$default_file_type;
+
     }
 
 } 

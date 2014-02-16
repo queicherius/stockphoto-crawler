@@ -13,10 +13,12 @@ class GratisographyCrawler extends StockphotoCrawler implements StockphotoCrawle
 
     public function getLicence()
     {
+
         return [
             'text' => 'Using CC0, you can waive all copyrights and related or neighboring rights that you have over your work, such as your moral rights (to the extent waivable), your publicity or privacy rights, rights you have protecting against unfair competition, and database rights and rights protecting the extraction, dissemination and reuse of data.',
             'link' => 'http://creativecommons.org/choose/zero/'
         ];
+
     }
 
     public function run()
@@ -32,6 +34,7 @@ class GratisographyCrawler extends StockphotoCrawler implements StockphotoCrawle
 
     private function getImageLinks($content)
     {
+
         preg_match_all('#pictures/[0-9]*H.jpg#', $content, $array);
 
         $array = $array[0];
@@ -44,6 +47,7 @@ class GratisographyCrawler extends StockphotoCrawler implements StockphotoCrawle
         );
 
         return array_unique($array);
+
     }
 
 }

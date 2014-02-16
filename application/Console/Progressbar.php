@@ -31,10 +31,12 @@ class Progressbar
 
     private function renderBar($blocks)
     {
+
         $done = Console::colorString(self::$color, str_repeat('#', $blocks));
         $not_done = str_repeat(' ', self::$blocks - $blocks);
 
         return 'Progress: [' . $done . $not_done . ']';
+
     }
 
 }

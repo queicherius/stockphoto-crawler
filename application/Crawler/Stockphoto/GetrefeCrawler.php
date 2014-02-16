@@ -13,10 +13,12 @@ class GetrefeCrawler extends StockphotoCrawler implements StockphotoCrawlerInter
 
     public function getLicence()
     {
+
         return [
             'text' => 'Free photos for your personal or commercial projects',
             'link' => 'http://getrefe.tumblr.com/'
         ];
+
     }
 
     public function run()
@@ -48,8 +50,10 @@ class GetrefeCrawler extends StockphotoCrawler implements StockphotoCrawlerInter
 
     private function getImageLinks($content)
     {
+
         preg_match_all('#href="([^"]*staticflickr[^"]*)"#', $content, $array);
         return array_unique($array[1]);
+
     }
 
 }
