@@ -57,7 +57,7 @@ class NewoldstockCrawler extends StockphotoCrawler implements StockphotoCrawlerI
     private function getImageLinks($content)
     {
 
-        preg_match_all('#http://flic\.kr/[^"]*#', $content, $array);
+        preg_match_all('#http://flic\.kr/p/[0-9a-zA-Z]*#', $content, $array);
         return array_unique($array[0]);
 
     }
