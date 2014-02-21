@@ -23,8 +23,13 @@ class Console
             return false;
         }
 
-        echo self::heading($type) . $message . $end_of_line;
+        echo self::minLength(self::heading($type) . $message) . $end_of_line;
 
+    }
+
+    private static function minLength($message)
+    {
+        return str_pad($message, 80, ' ', STR_PAD_RIGHT);
     }
 
     private static function heading($type)
