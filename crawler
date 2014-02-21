@@ -20,6 +20,7 @@ $collection->add(new Crawler\Stockphoto\PicjumboCrawler);
 $collection->add(new Crawler\Stockphoto\PatternlibraryCrawler);
 $collection->add(new Crawler\Stockphoto\NewoldstockCrawler);
 $collection->add(new Crawler\Stockphoto\SuperfamousCrawler);
+$collection->add(new Crawler\Stockphoto\ImcreatorCrawler);
 
 // Run crawlers
 $collection->run();
