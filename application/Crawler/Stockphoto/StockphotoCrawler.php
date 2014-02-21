@@ -17,7 +17,7 @@ abstract class StockphotoCrawler extends Crawler
 
         $downloadable_images = count($images);
 
-        $images = $this->imagesWithAttribution($images);
+        $images = $this->imagesWithMetadata($images);
         $images = $this->filterExistingFiles($images);
 
         $new_images = count($images);
@@ -30,33 +30,47 @@ abstract class StockphotoCrawler extends Crawler
 
         foreach ($images as $image) {
 
-            $this->downloadImage($image['image'], $image['attribution']);
+            $this->downloadImage($image);
             $progess->increase();
 
         }
 
     }
 
-    private function imagesWithAttribution($images)
+    private function imagesWithMetadata($images)
     {
 
         array_walk(
             $images,
             function (&$image) {
 
-                if (!is_array($image)) {
-
-                    $image = [
-                        'image'       => $image,
-                        'attribution' => false
-                    ];
-
-                }
+                $image = $this->imageWithMetadata($image);
 
             }
         );
 
         return $images;
+
+    }
+
+    private function imageWithMetadata($image)
+    {
+
+        $defaults = [
+            'attribution' => false,
+            'subfolder'   => false,
+            'cc'          => false
+        ];
+
+        $image_metadata = [];
+
+        if (!is_array($image)) {
+            $image_metadata['image'] = $image;
+        } else {
+            $image_metadata = $image;
+        }
+
+        return array_merge($defaults, $image_metadata);
 
     }
 
@@ -68,7 +82,7 @@ abstract class StockphotoCrawler extends Crawler
             function ($image) {
 
                 $file = new File();
-                $file->path = $this->getFilePath($image['image'], $image['attribution']);
+                $file->path = $this->getFilePath($image);
                 return !$file->exists();
 
             }
@@ -76,11 +90,11 @@ abstract class StockphotoCrawler extends Crawler
 
     }
 
-    public function downloadImage($url, $attribution = false)
+    public function downloadImage($image)
     {
 
-        $path = $this->getFilePath($url, $attribution);
-        $contents = $this->fetchUrl($url);
+        $path = $this->getFilePath($image);
+        $contents = $this->fetchUrl($image['image']);
 
         if ($contents) {
             $this->saveFile($path, $contents);
@@ -88,13 +102,16 @@ abstract class StockphotoCrawler extends Crawler
 
     }
 
-    private function getFilePath($url, $attribution)
+    private function getFilePath($image)
     {
 
-        $attribution = ($attribution) ? '-by-' . $attribution : '';
+        $url = $image['image'];
+        $attribution = ($image['attribution']) ? '-by-' . $image['attribution'] : '';
+        $subfolder = ($image['subfolder']) ? $image['subfolder'] . '/' : '';
+        $licence = ($image['cc']) ? '-cc-' . $image['cc'] : '';
 
-        return $this->getBaseDirectory() . '/' . $this->directory . '/' .
-        md5($url) . $attribution . '.' . $this->getFileType($url);
+        return $this->getBaseDirectory() . '/' . $this->directory . '/' . $subfolder .
+        md5($url) . $attribution . $licence . '.' . $this->getFileType($url);
 
     }
 
