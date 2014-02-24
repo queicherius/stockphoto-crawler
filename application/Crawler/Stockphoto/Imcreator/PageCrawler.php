@@ -33,7 +33,7 @@ class PageCrawler extends StockphotoCrawler
         preg_match('#<a href="([^"]*)" class="download" target="_blank">#', $page, $flickr);
 
         if (!isset($flickr[1])) {
-            Console::warning("No image found for {$this->image['image']}");
+            Console::notice("No image found for {$this->image['image']}");
             return false;
         }
 
@@ -47,7 +47,7 @@ class PageCrawler extends StockphotoCrawler
         preg_match('#<a href="http://www.flickr.com/photos/([^/]*)/" target="_blank" class="author">#', $page, $author);
 
         if (!isset($author[1])) {
-            Console::warning("No author found for {$this->image['image']}");
+            Console::notice("No author found for {$this->image['image']}");
             return false;
         }
 
@@ -61,7 +61,7 @@ class PageCrawler extends StockphotoCrawler
         preg_match('#href="(http://creativecommons.org/[^"]*)"#', $page, $licence);
 
         if (!isset($licence[1])) {
-            Console::warning("No licence found for {$this->image['image']}");
+            Console::notice("No licence found for {$this->image['image']}");
             return false;
         }
 
