@@ -12,7 +12,7 @@ class SplitshireCrawler extends StockphotoCrawler implements StockphotoCrawlerIn
 
     public function getName()
     {
-        return 'getrefe';
+        return 'splitshire';
     }
 
     public function getLicence()
