@@ -163,10 +163,6 @@ class ImcreatorCrawler extends StockphotoCrawler implements StockphotoCrawlerInt
 
                 $original_image = $flickr->getOriginalImageUrl($value['image']);
 
-                if (!$original_image) {
-                    unset($value);
-                }
-
                 $value['image'] = $original_image;
                 $progress->increase();
 

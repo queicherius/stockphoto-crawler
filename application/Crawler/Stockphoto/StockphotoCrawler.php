@@ -17,6 +17,7 @@ abstract class StockphotoCrawler extends Crawler
 
         $downloadable_images = count($images);
 
+        $images = $this->cleanArray($images);
         $images = $this->imagesWithMetadata($images);
         $images = $this->filterExistingFiles($images);
 

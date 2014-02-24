@@ -52,4 +52,22 @@ abstract class Crawler
 
     }
 
+    protected function cleanArray($array)
+    {
+
+        return array_filter(
+            $array,
+            function ($value) {
+
+                if (is_array($value)) {
+                    return !($value['image'] === false);
+                }
+
+                return !($value === false);
+
+            }
+        );
+
+    }
+
 }
