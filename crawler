@@ -21,6 +21,7 @@ $collection->add(new Crawler\Stockphoto\PatternlibraryCrawler);
 $collection->add(new Crawler\Stockphoto\NewoldstockCrawler);
 $collection->add(new Crawler\Stockphoto\SuperfamousCrawler);
 $collection->add(new Crawler\Stockphoto\ImcreatorCrawler);
+$collection->add(new Crawler\Stockphoto\SplitshireCrawler);
 
 // Run crawlers
 $collection->run();
