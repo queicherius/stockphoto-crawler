@@ -8,3 +8,7 @@ This downloads around 2300+ images (8,6GB+).
 **Usage**
 
 `php crawler`
+
+## Licence
+
+MIT
