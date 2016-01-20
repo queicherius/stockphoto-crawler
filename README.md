@@ -4,9 +4,14 @@ Crawler for free stockphotos, inspired by the post ["Stockphotos that don't suck
 
 This downloads around 2300+ images (8,6GB+).
 
-**Usage**
+**Note:** This script relies on the page structure to remain the same. As soon
+as the crawled pages change their structure, the script will stop working.
 
-`php crawler`
+## Usage
+
+```
+php crawler
+```
 
 ## Licence
 
