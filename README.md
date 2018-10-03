@@ -1,6 +1,8 @@
-# Stockphoto Crawler
+### :boom: Careful: This package is no longer maintained and is only here for historic reasons. This means you should very likely not use it. You have been warned. :boom:
 
-[![No Maintenance Intended](https://img.shields.io/badge/No%20Maintenance%20Intended-%E2%9C%95-red.svg?style=flat-square)](http://unmaintained.tech/)
+---
+
+# Stockphoto Crawler
 
 Crawler for free stockphotos, inspired by the post ["Stockphotos that don't suck" on Medium](https://medium.com/p/62ae4bcbe01b).
 
